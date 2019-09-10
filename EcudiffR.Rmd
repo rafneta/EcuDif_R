@@ -1,0 +1,104 @@
+---
+title: "Ecuaciones diferenciales con R"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+Intalamos el paquete
+
+```{r, eval=FALSE}
+install.packages('deSolve')
+install.packages("XLConnect") 
+```
+
+```{r}
+parametros <- c(a = -8/3,
+                b = -10,
+                c = 28)
+
+estado <- c(X = 1,
+            Y = 1,
+            Z = 1)
+
+Lorenz <- function (t, estado, parametros){
+  with(as.list(c(estado, parametros)),{
+# Razon de cambio
+    dX <- a * X + Y * Z
+    dY <- b * (Y-Z)
+    dZ <- -X * Y + c * Y - Z
+    return(list(c(dX, dY, dZ)))
+}) # temina with
+} # termina funcion
+
+tiempo <- seq(0, 100, by = 0.01)# tiempo de simulacion
+
+```
+
+Resolvemos con el paquete *deSolve*
+
+```{r}
+library(deSolve)
+
+solucion <- ode(y = estado,
+                times = tiempo,
+                func = Lorenz,
+                parms = parametros)
+head(solucion)
+tail(solucion)
+```
+
+Graficamos las componentes de la solucion y los planos fase
+
+```{r}
+plot(solucion)
+plot(solucion[, "X"], solucion[, "Y"], pch = ".")
+plot(solucion[, "X"], solucion[, "Z"], pch = ".")
+plot(solucion[, "Y"], solucion[, "Z"], pch = ".")
+```
+
+
+
+
+
+https://bookdown.org/yihui/rmarkdown/markdown-syntax.html
+
+
+1. Primeros pasos en R
+
+- pagina oficial de R
+- instalacion (actializacion)
+
+
+2. R como calculadora 
+
+- operaciones aritmeticas
+- funciones trigonometricas
+- funciones exponenciales, logaritmicas
+
+
+3. Algunos tipos de datos
+
+- vectores
+- listas
+- - Operaciones con listas
+- Frames
+- with
+
+4. funciones
+
+- Lo necesario
+
+5. Graficas
+
+- Tipos de graficas
+
+6. Paquete de EDO deSolve, diffeqr
+
+- Ecuaciones diferenciales ordinarias (Problema de valor inicial, problemas de valor en la frontera) deSolve solo sirve para IVP, diffeqr de Julia (valores en al frontera) 
+
+- Ecuaciones diferenciales parciales (con fronteras acotadas) deSolve
+
+
+
