@@ -10,7 +10,6 @@ Intalamos el paquete
 
 ```{r, eval=FALSE}
 install.packages('deSolve')
-install.packages("XLConnect") 
 ```
 
 ```{r}
@@ -64,7 +63,6 @@ plot(solucion[, "Y"], solucion[, "Z"], pch = ".")
 
 https://bookdown.org/yihui/rmarkdown/markdown-syntax.html
 
-
 1. Primeros pasos en R
 
 - pagina oficial de R
@@ -77,28 +75,19 @@ https://bookdown.org/yihui/rmarkdown/markdown-syntax.html
 - funciones trigonometricas
 - funciones exponenciales, logaritmicas
 
-
 3. Algunos tipos de datos
 
-- vectores
 - listas
 - - Operaciones con listas
-- Frames
-- with
+- Otros tipos de datos
 
-4. funciones
+4. Programacion basica 
 
-- Lo necesario
+- Condicionales
+- Ciclos
 
 5. Graficas
 
 - Tipos de graficas
 
-6. Paquete de EDO deSolve, diffeqr
-
-- Ecuaciones diferenciales ordinarias (Problema de valor inicial, problemas de valor en la frontera) deSolve solo sirve para IVP, diffeqr de Julia (valores en al frontera) 
-
-- Ecuaciones diferenciales parciales (con fronteras acotadas) deSolve
-
-
-
+6. Paquete de EDO ____________
