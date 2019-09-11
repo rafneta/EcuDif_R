@@ -12,6 +12,17 @@ Intalamos el paquete
 install.packages('deSolve')
 ```
 
+Resolvemos la siguiente ecuacion diferencial
+
+$$
+\begin{eqnarray}
+\dot{x}=-\dfrac{8}{3}x+yz\\
+\dot{y}=-10(y-z)\\
+\dot{z}=-xy+28y-z
+\end{eqnarray}
+$$
+
+
 ```{r}
 parametros <- c(a = -8/3,
                 b = -10,
