@@ -38,7 +38,7 @@ Lorenz <- function (t, estado, parametros){
     dX <- a * X + Y * Z
     dY <- b * (Y-Z)
     dZ <- -X * Y + c * Y - Z
-    return(list(c(dX, dY, dZ)))
+    list(c(dX, dY, dZ))
 }) # temina with
 } # termina funcion
 

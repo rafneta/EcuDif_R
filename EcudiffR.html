@@ -207,7 +207,7 @@ Lorenz &lt;- function (t, estado, parametros){
     dX &lt;- a * X + Y * Z
     dY &lt;- b * (Y-Z)
     dZ &lt;- -X * Y + c * Y - Z
-    return(list(c(dX, dY, dZ)))
+    list(c(dX, dY, dZ))
 }) # temina with
 } # termina funcion
 
