@@ -12,7 +12,7 @@ Intalamos el paquete
 install.packages('deSolve')
 ```
 
-Resolvemos la siguiente ecuacion diferencial
+## Sistema de Lorenz
 
 $$
 \begin{eqnarray}
@@ -68,6 +68,9 @@ plot(solucion[, "X"], solucion[, "Z"], pch = ".")
 plot(solucion[, "Y"], solucion[, "Z"], pch = ".")
 ```
 
+
+
+## 
 
 
 
