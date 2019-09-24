@@ -32,6 +32,8 @@ estado <- c(X = 1,
             Y = 1,
             Z = 1)
 
+tiempo <- seq(0, 100, by = 0.01)# tiempo de simulacion
+
 Lorenz <- function (t, estado, parametros){
   with(as.list(c(estado, parametros)),{
 # Razon de cambio
@@ -42,7 +44,7 @@ Lorenz <- function (t, estado, parametros){
 }) # temina with
 } # termina funcion
 
-tiempo <- seq(0, 100, by = 0.01)# tiempo de simulacion
+
 
 ```
 
@@ -70,8 +72,68 @@ plot(solucion[, "Y"], solucion[, "Z"], pch = ".")
 
 
 
-## 
+## Presa- Depredador
 
+Tenemos un modelo tipo Lotka-Volterra, describe la interacción entre la presa y el depredador. 
+
+$$
+\begin{eqnarray}
+\frac{dP}{dt}=r_GP\left(1-\frac{P}{K} \right)-r_IPC\\
+\frac{dC}{dt}=k_{AE}r_IPC-r_MC
+\end{eqnarray}
+$$
+
+$P$, $C$ son las concentraciones de la presa y el depredador respectivamaente, $r_G$ es la tasa de creciemiento de la presa, $K$ la capacidad e acarrep, $r_I$ la tasa de ingestión del depredador, $k_{AE}$ eficiencia de asimilación y $r_M$ es la tasa de mortalidad del depredador. 
+
+Primero declaramos unafunción f(tiempo, estado y pramatros.) en este orden sin nombres. 
+
+La solución se regresa en un matriz
+
+
+
+
+```{r}
+
+parametros <- c(rI=0.2,
+                rG=1.0,
+                rM=0.2,
+                AE=0.5,
+                K =10)
+
+estado <- c(P = 1,
+            C = 2)
+
+tiempo <- seq(0, 200, by = 1)# tiempo de simulacion
+
+LVmod0D <- function (t, estado, parametros){
+  with(as.list(c(estado, parametros)),{
+# Razon de cambio
+IngestC<-rI*P*C
+GrowthP<-rG*P*(1-P/K)
+MortC <- rM * C
+dP <- GrowthP - IngestC
+dC <- IngestC * AE - MortC
+return(list(c(dP, dC)))
+}) # temina with
+} # termina funcion
+```
+
+```{r}
+library(deSolve)
+solucion <- ode(y = estado,
+                times = tiempo,
+                func = LVmod0D,
+                parms = parametros)
+head(solucion)
+tail(solucion)
+```
+
+```{r}
+matplot(solucion[,"time"], solucion[,2:3], type = "l",
+        xlab = "tiempo", ylab = "Concentraciones",
+        main = "Lotka-Volterra", lwd = 2)# es una función de R
+legend("topright", c("Presa", "Depredador"), col = 1:2, lty = 1:2)
+```
 
 
 
